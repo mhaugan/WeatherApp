@@ -2,4 +2,7 @@
     <string name="app_name">WeatherApp</string>
     <string name="action_settings">Settings</string>
     <string name="action_favorite">Favorite</string>
+    <string name="Update">Update</string>
+    <string name="Delete">Delete</string>
+    <string name="download">Download</string>
 </resources>
