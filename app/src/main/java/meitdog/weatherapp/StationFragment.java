@@ -1,9 +1,6 @@
 package meitdog.weatherapp;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.app.ListFragment;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,7 +14,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class StationFragment extends ListFragment implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -31,7 +27,7 @@ public class StationFragment extends ListFragment implements View.OnClickListene
     ArrayList<Weather> weatherArrayList = new ArrayList<>();
     String JSONResponseString;
     WeatherSourceData weatherSourceData;
-    WeatherAdapter weatherInstance;
+    StationAdapter weatherInstance;
 
 
     @Override
@@ -76,7 +72,7 @@ public class StationFragment extends ListFragment implements View.OnClickListene
 
     private void createAdapter(){
         int layoutID = R.layout.station_fragment;
-        weatherInstance = new WeatherAdapter(getActivity(), layoutID, weatherArrayList);
+        weatherInstance = new StationAdapter(getActivity(), layoutID, weatherArrayList);
 
         setListAdapter(weatherInstance);
         getListView().setOnItemClickListener(this);

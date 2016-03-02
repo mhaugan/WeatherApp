@@ -20,8 +20,18 @@
 
     <fragment class="meitdog.weatherapp.StationFragment"
         android:id="@+id/station_fragment"
+        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout="@layout/station_fragment" />
+
+    <FrameLayout class="meitdog.weatherapp.WeatherFragment"
+        android:id="@+id/weather_fragment"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/weather_fragment">
+
+    </FrameLayout>
 
 </LinearLayout>

@@ -9,11 +9,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class WeatherAdapter extends ArrayAdapter<Weather>{
+public class StationAdapter extends ArrayAdapter<Weather>{
     List<Weather> items;
     Context context;
 
-    public WeatherAdapter(Context context, int resource, List<Weather> objects){
+    public StationAdapter(Context context, int resource, List<Weather> objects){
         super(context, resource, objects);
         this.context = context;
         this.items = objects;
