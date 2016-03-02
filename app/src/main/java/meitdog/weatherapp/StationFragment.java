@@ -1,7 +1,7 @@
 package meitdog.weatherapp;
 
-
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.ListFragment;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,53 +17,71 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class JsonConnector extends ListFragment implements AdapterView.OnItemClickListener {
+public class StationFragment extends ListFragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+
+    String station1URL = "http://kark.hin.no/~wfa/fag/android/2016/weather/vdata.php?id=1";
+    String station2URL = "http://kark.hin.no/~wfa/fag/android/2016/weather/vdata.php?id=2";
+    String station3URL = "http://kark.hin.no/~wfa/fag/android/2016/weather/vdata.php?id=3";
+    String station4URL = "http://kark.hin.no/~wfa/fag/android/2016/weather/vdata.php?id=4";
+    String stationDataURL = "http://kark.hin.no/~wfa/fag/android/2016/weather/vstations.php";
 
     OnArticleSelectedListener mCallback;
-    ArrayList<Weather> weatherList = new ArrayList<>();
+    ArrayList<Weather> weatherArrayList = new ArrayList<>();
     String JSONResponseString;
+    WeatherSourceData weatherSourceData;
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        requestJSONData("?sort_by=id");
+        weatherSourceData = new WeatherSourceData(this);
+        weatherSourceData.open();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        weatherSourceData.close();
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id){
         String tag = "onItemClick ";
         Log.d(tag, "item " + position);
-        mCallback.onArticleSelected(weatherList.get(position));
+        mCallback.onArticleSelected(weatherArrayList.get(position));
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.downloadBtn:
+                weatherSourceData.getAllWeather();
+                break;
+
+            case R.id.updateBtn:
+                weatherSourceData.getAllStations();
+                break;
+
+            case R.id.deleteBtn:
+                weatherSourceData.deleteAll();
+                break;
+        }
+        System.out.println("ON CLICK METHOD");
     }
 
     public interface OnArticleSelectedListener{
         void onArticleSelected(Weather weather);
     }
 
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onAttach(Activity activity){
-        super.onAttach(activity);
-        String tag = "onAttach";
-        try{
-            mCallback = (OnArticleSelectedListener) activity;
-            Log.d(tag, mCallback.toString());
-        }catch (ClassCastException e){
-            Log.d(tag, e.getMessage());
-        }
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState){
-        super.onActivityCreated(savedInstanceState);
-
-        requestJSONData("?sort_by=it_no");
-        //createAdapter();
-    }
-
-
-
     private void requestJSONData(final String parameters){
         final String TAG = "requestJSONData";
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
-                String connectionURL = "http://kark.hin.no:8088/d3330log_backend/getTestEquipment" + parameters;
+                String connectionURL = stationDataURL + parameters;
                 HttpURLConnection connection;
                 URL url;
                 try{
@@ -109,9 +127,12 @@ public class JsonConnector extends ListFragment implements AdapterView.OnItemCli
 
     private void createArrayList(String JSONResponseString){
         Gson gson = new Gson();
-        weatherList = new ArrayList<>();
-        Weather[] listOfWeather = gson.fromJson(JSONResponseString, Weather[].class);
-        for(Weather weather: listOfWeather)
-            weatherList.add(weather);
+        weatherArrayList = new ArrayList<>();
+        Weather[] listOfStations = gson.fromJson(JSONResponseString, Weather[].class);
+        for(Weather equipment: listOfStations){
+            weatherArrayList.add(equipment);
+            System.out.println(equipment + " OK DIS WORK PLEASE");
+        }
     }
+
 }

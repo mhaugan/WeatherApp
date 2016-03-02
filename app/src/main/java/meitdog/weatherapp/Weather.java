@@ -20,12 +20,22 @@ public class Weather {
         this.humidity = humidity;
     }
 
-    public Weather () {
+    public Weather (int id, String station_name, String station_position) {
+        this.id = id;
+        this.station_name = station_name;
+        this.station_position = station_position;
+    }
+
+/*    public Weather () {
         super();
+        this.id = -1;
+        this.station_name = "";
+        this.station_position = "";
+        this.timestamp = null;
         this.temp = "";
         this.pressure = "";
         this.humidity = "";
-    }
+    }*/
 
     public int getId() {
         return id;

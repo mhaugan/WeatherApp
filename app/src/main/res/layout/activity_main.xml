@@ -18,10 +18,10 @@
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <fragment class="meitdog.weatherapp.MyListFragment"
-        android:id="@+id/mylistfragment"
-        android:layout_width="wrap_content"
+    <fragment class="meitdog.weatherapp.StationFragment"
+        android:id="@+id/station_fragment"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout="@layout/mylistfragment" />
+        tools:layout="@layout/station_fragment" />
 
 </LinearLayout>
