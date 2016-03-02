@@ -31,12 +31,14 @@ public class StationFragment extends ListFragment implements View.OnClickListene
     ArrayList<Weather> weatherArrayList = new ArrayList<>();
     String JSONResponseString;
     WeatherSourceData weatherSourceData;
+    WeatherAdapter weatherInstance;
 
 
     @Override
     public void onStart() {
         super.onStart();
         requestJSONData("?sort_by=id");
+        createAdapter();
         weatherSourceData = new WeatherSourceData(this);
         weatherSourceData.open();
     }
@@ -56,7 +58,7 @@ public class StationFragment extends ListFragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+/*        switch (v.getId()) {
             case R.id.downloadBtn:
                 weatherSourceData.getAllWeather();
                 break;
@@ -68,8 +70,16 @@ public class StationFragment extends ListFragment implements View.OnClickListene
             case R.id.deleteBtn:
                 weatherSourceData.deleteAll();
                 break;
-        }
+        }*/
         System.out.println("ON CLICK METHOD");
+    }
+
+    private void createAdapter(){
+        int layoutID = R.layout.station_fragment;
+        weatherInstance = new WeatherAdapter(getActivity(), layoutID, weatherArrayList);
+
+        setListAdapter(weatherInstance);
+        getListView().setOnItemClickListener(this);
     }
 
     public interface OnArticleSelectedListener{
@@ -129,10 +139,8 @@ public class StationFragment extends ListFragment implements View.OnClickListene
         Gson gson = new Gson();
         weatherArrayList = new ArrayList<>();
         Weather[] listOfStations = gson.fromJson(JSONResponseString, Weather[].class);
-        for(Weather equipment: listOfStations){
-            weatherArrayList.add(equipment);
-            System.out.println(equipment + " OK DIS WORK PLEASE");
+        for(Weather weather: listOfStations){
+            weatherArrayList.add(weather);
         }
     }
-
 }

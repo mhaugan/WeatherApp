@@ -4,45 +4,70 @@ import java.util.Date;
 
 public class Weather {
 
-    private int id;
-    private String station_name, station_position;
+    private Integer id;
+    private String name, position;
     private Date timestamp;
-    private String temp, pressure, humidity;
+    private String station_name, station_position, temperature, pressure,humidity;
 
     public Weather (int id, String station_name, String station_position,
-                    Date timestamp, String temp, String pressure, String humidity) {
+                    Date timestamp, String temperature, String pressure, String humidity) {
         this.id = id;
         this.station_name = station_name;
         this.station_position = station_position;
         this.timestamp = timestamp;
-        this.temp = temp;
+        this.temperature = temperature;
         this.pressure = pressure;
         this.humidity = humidity;
     }
 
-    public Weather (int id, String station_name, String station_position) {
+    public Weather (int id, String name, String position) {
         this.id = id;
-        this.station_name = station_name;
-        this.station_position = station_position;
-    }
+        this.name = name;
+        this.position = position;    }
 
-/*    public Weather () {
+/*
+    public Weather () {
         super();
         this.id = -1;
-        this.station_name = "";
-        this.station_position = "";
+        this.name = "";
+        this.position = "";
         this.timestamp = null;
         this.temp = "";
         this.pressure = "";
         this.humidity = "";
-    }*/
+    }
+*/
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getStation_name() {
@@ -61,21 +86,12 @@ public class Weather {
         this.station_position = station_position;
     }
 
-    public Date getTimestamp() {
-        return timestamp;
+    public String getTemperature() {
+        return temperature;
     }
 
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = timestamp;
-    }
-
-
-    public String getTemp() {
-        return temp;
-    }
-
-    public void setTemp(String temp) {
-        this.temp = temp;
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
     }
 
     public String getPressure() {
@@ -93,10 +109,14 @@ public class Weather {
     public void setHumidity(String humidity) {
         this.humidity = humidity;
     }
+    /*    @Override
+    public String toString () {
+        return "ID: " + id + "\nStation name: " + station_name + "\nStation position: " + station_position
+               + "\nDateTime: " + timestamp + "\nTemperature: " + temp + "\nInflated: " + pressure + "\nHumidity" + humidity;
+    }*/
 
     @Override
     public String toString () {
-        return "ID: " + id + "\nStation name: " + station_name + "\nStation position: " + station_position
-               + "\nDateTime: " + timestamp + "Temperature: " + temp + "\nInflated: " + pressure + "\nHumidity" + humidity;
+        return "\nID: " + id + " name: " + name + " Position: " + position;
     }
 }

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -29,22 +30,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
+    </LinearLayout>
+-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/_id"
+            android:layout_weight="0.3"
+            android:textStyle="bold"
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/_name"
+            android:layout_weight="0.3"
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/_position"
+            android:layout_weight="0.4"
+            android:text=""
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
-
-<!--    <FrameLayout
-        android:id="@+id/displayDownload"
-        android:layout_width="match_parent"
-        android:layout_weight="1"
-        android:layout_height="match_parent">
-
-    </FrameLayout>-->
-
-    <ListView
-        android:id="@+id/listWeather"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-    </ListView>
 
 </LinearLayout>
